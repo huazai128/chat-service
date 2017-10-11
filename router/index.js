@@ -5,6 +5,7 @@ const controls = require("controllers/index");
 const routes = (app) => {
     app.all("*",(req,res,next) => {
         // 跨域解决
+        // res.header("Access-Control-Allow-Origin", "http://localhost:4001");
         res.setHeader("Access-Control-Allow-Origin","*");
         res.header('Access-Control-Allow-Headers', 'Authorization, Origin, No-Cache, X-Requested-With, If-Modified-Since, Pragma, Last-Modified, Cache-Control, Expires, Content-Type, X-E4M-With');
         res.header('Access-Control-Allow-Methods', 'PUT,PATCH,POST,GET,DELETE,OPTIONS'); // 请求方法
@@ -42,8 +43,10 @@ const routes = (app) => {
     app.all("/auth",controls.auth.list);
     app.all("/sign",controls.auth.item);
 
-    
+    // Room
+    app.all("/rooms",controls.room.list);
 
+    
     app.all("*",(req,res) => {
         res.status(404).jsonp({
             code: 0,

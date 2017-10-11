@@ -46,11 +46,15 @@ authCtrl.list.GET = (req,res) => {
 
 // 登录
 authCtrl.list.POST = ({body:{ email,password }},res) => {
+    console.log(email,password);
     Auth.find({email:email})
     .then(([user]) => {
+        console.log(user)
         if(user){
             if(Object.is(sha256(password),user.password)){
                 isOnLine(res,{user:user._id,message:"登陆成功"});
+            }else{
+                handleError({res,message:"用户或密码错误"})
             }
         }else{
             handleError({res,message:"用户不存在"})

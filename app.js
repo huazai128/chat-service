@@ -28,6 +28,8 @@ server.on("error",(err) => {
     }
 })
 
+const io = require("socket.io").listen(server);
+
 server.listen(port,() => {
     console.log("Port : ",port)
 })
