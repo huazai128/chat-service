@@ -11,7 +11,6 @@ const authCtrl = {
 const sha256 = (pwd) => {
     return crypto.createHmac("sha256",pwd).update(config.AUTH.defaultPassword).digest("hex")
 }
-
 const isOnLine = (res,{userId,message="注册成功"}) => {
     Auth.findOneAndUpdate({_id:userId},{$set:{ online:true}},{new:true})
         .then((auth) => {

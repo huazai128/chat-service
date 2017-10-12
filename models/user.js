@@ -10,7 +10,7 @@ const UserSchema = new mongoose.Schema({
     gravatar:{type:String,default:"" },
     password:{type:String,require:true},
     online:{type:Boolean,default: false},
-    roomId:{type:ObjectId,ref:"Room"},
+    roomIds:[{type:ObjectId,ref:"Room"}],
     meta:{
         createTime:{type:Date,default:Date.now},
         updateTime:{type:Date,default:Date.now}
